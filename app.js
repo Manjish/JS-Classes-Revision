@@ -1,14 +1,3 @@
-// const testCar = new Car(4, 'V6', 'Grey')
-
-// console.log(testCar)
-// console.log(testCar.carStats())
-
-//Since classes are not hoisted, the code above will give a runtime error.
-//Cannot access Class before initialization.
-
-//Since functions are hoisted, they can be declared anywhere and JS will hoist them to the top.
-//This enables function call before the function declaration section.
-greet('Top')
 class Car {
   constructor(doors, engine, color) {
     this.doors = doors
@@ -20,7 +9,6 @@ class Car {
     return `There are ${this.doors} doors and ${this.engine} engine in this car. The car is ${this.color} in color.`
   }
 
-  //static methods - cannot be called from the instance/object, usually something that's not related to the object.
   static totalDoors(car1, car2) {
     const door1 = car1.doors
     const door2 = car2.doors
@@ -29,19 +17,22 @@ class Car {
   }
 }
 
-const cx5 = new Car(4, 'V6', 'Grey')
-// const cx6 = new Car(2, 'V8', 'Black')
+//SUV is a child class and Car is a parent class, here extends keyword is used to implement inheritance
+class SUV extends Car {
+  constructor(doors, engine, color, brand, carStats) {
+    //constructor of SUV class
+    super(doors, engine, color, carStats) //constructor of Car class. super keyword is used for invoking constructor of parent class.
+    this.brand = brand
+    this.wheel = 4 //default initialization
+    this.hasAc = true //default initialization
+  }
 
-console.log(cx5)
-console.log(cx5.carStats())
-
-// console.log(cx6)
-// console.log(cx6.carStats())
-
-// cx6.totalDoors() -----This gives error as static methods cannot be called through instance.
-// console.log(Car.totalDoors(cx5, cx6)) //This works as the statis method is being called from the class.
-function greet(location) {
-  console.log(`Hello from ${location}`)
+  myBrand() {
+    return `This SUV is of ${this.brand} brand`
+  }
 }
 
-greet('Bottom')
+const cx5 = new SUV(4, 'V6', 'Grey', 'Mazda')
+console.log(cx5)
+console.log(cx5.myBrand())
+console.log(cx5.carStats())
