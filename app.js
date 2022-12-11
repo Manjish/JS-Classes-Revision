@@ -30,16 +30,16 @@ class Car {
 }
 
 const cx5 = new Car(4, 'V6', 'Grey')
-const cx6 = new Car(2, 'V8', 'Black')
+// const cx6 = new Car(2, 'V8', 'Black')
 
 console.log(cx5)
 console.log(cx5.carStats())
 
-console.log(cx6)
-console.log(cx6.carStats())
+// console.log(cx6)
+// console.log(cx6.carStats())
 
 // cx6.totalDoors() -----This gives error as static methods cannot be called through instance.
-console.log(Car.totalDoors(cx5, cx6)) //This works as the statis method is being called from the class.
+// console.log(Car.totalDoors(cx5, cx6)) //This works as the statis method is being called from the class.
 function greet(location) {
   console.log(`Hello from ${location}`)
 }
