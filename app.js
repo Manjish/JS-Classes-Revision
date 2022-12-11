@@ -22,7 +22,7 @@ class SUV extends Car {
   constructor(doors, engine, color, brand, carStats) {
     //constructor of SUV class
     super(doors, engine, color, carStats) //constructor of Car class. super keyword is used for invoking constructor of parent class.
-    this.brand = brand
+    this._brand = 'No brand' //_brand = protected variable
     this.wheel = 4 //default initialization
     this.hasAc = true //default initialization
   }
@@ -30,9 +30,23 @@ class SUV extends Car {
   myBrand() {
     return `This SUV is of ${this.brand} brand`
   }
+
+  //method to get the value of brand variable
+  get getBrand() {
+    return this._brand
+  }
+
+  //method to set the value of brand variable
+  set setBrand(newBrand) {
+    return (this._brand = newBrand)
+  }
+
+  //getter and setter are the concepts of encapsulation which ensures that the protected variables are not accessed directly
 }
 
-const cx5 = new SUV(4, 'V6', 'Grey', 'Mazda')
-console.log(cx5)
-console.log(cx5.myBrand())
-console.log(cx5.carStats())
+const cx5 = new SUV(4, 'V6', 'Grey')
+//Will console No brand since the value has not been set
+console.log('Before setting the brand: ', cx5.getBrand) //get the _brand of the object through getter method
+cx5.setBrand = 'Mazda' //setting the value of _brand through the setter method
+//Will console Mazda as the value has been set
+console.log('After setting the brand: ', cx5.getBrand)
