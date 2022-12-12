@@ -70,3 +70,5 @@ cx5.setBrand = 'Mazda' //setting the value of _brand through the setter method
 console.log('After setting the brand: ', cx5.getBrand)
 //calling the mixing method
 console.log(cx5.madeIn(2019))
+
+//-----------------------Note: Avoid using mixins as it increases the complexity of the code.-----------------------//
