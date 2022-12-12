@@ -1,3 +1,18 @@
+//creating a mixin method with function inside
+let mixin = {
+  madeIn(year) {
+    return `This car was made in ${year}.`
+  },
+}
+
+//creating a mixin for car which implements the madeIn method of mixin
+let carMixin = {
+  __proto__: mixin,
+  madeIn(year) {
+    return super.madeIn(year)
+  },
+}
+
 class Car {
   constructor(doors, engine, color) {
     this.doors = doors
@@ -25,6 +40,9 @@ class SUV extends Car {
     this._brand = 'No brand' //_brand = protected variable
     this.wheel = 4 //default initialization
     this.hasAc = true //default initialization
+
+    //assigning the mixin --- this needs to done in the constructor
+    Object.assign(this, carMixin)
   }
 
   myBrand() {
@@ -50,3 +68,5 @@ console.log('Before setting the brand: ', cx5.getBrand) //get the _brand of the 
 cx5.setBrand = 'Mazda' //setting the value of _brand through the setter method
 //Will console Mazda as the value has been set
 console.log('After setting the brand: ', cx5.getBrand)
+//calling the mixing method
+console.log(cx5.madeIn(2019))
